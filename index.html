@@ -1,1 +1,53 @@
-matthew vermaak
+<html>
+  <head>
+  </head>
+  <body style='font-family: helvetica;'> 
+    <div class='name'>matthew vermaak</div>
+    <script type='text/javascript'>
+      var nameElement = document.getElementsByClassName("name")[0];
+      var name = nameElement.textContent;
+
+      var nameArray = name.split('');
+      var animationArray = Array.apply(null, Array(nameArray.length)).map(function() { return 0;});
+      var displayFrame = nameArray.slice(0);
+
+      var asciiAnimation = ["*", "@", "0", "o", "."];
+      var animationInterval = 200;
+      var initialPause = 1000;
+      var animationChance = 0.00005;
+    
+      var randomLetter = function() {
+        var l = displayFrame.length;
+
+        return Math.floor(Math.random() * l);
+      };
+
+      var setFrame = function() {
+        for(var i = 0; i < displayFrame.length; i++) {
+          if(animationArray[i] > 0 && animationArray[i] <= asciiAnimation.length) {
+            displayFrame[i] = asciiAnimation[animationArray[i]++];
+          }
+          if(animationArray[i] > asciiAnimation.length) {
+            displayFrame[i] = nameArray[i];
+            animationArray[i] = 0;
+          }
+        }
+
+        if(animationChance > (Math.random() / 1000)) { 
+          var rl = randomLetter();
+          if(animationArray[rl] == 0) {
+            displayFrame[rl] = asciiAnimation[animationArray[rl]++];
+          }
+        }
+      };
+      
+      setTimeout(function() {
+        setInterval( function() {
+          setFrame();
+          nameElement.innerHTML = displayFrame.join('');
+        }, animationInterval );
+      }, initialPause );
+      
+    </script>
+  </body>
+</html>
