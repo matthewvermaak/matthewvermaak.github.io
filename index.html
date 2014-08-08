@@ -1,7 +1,7 @@
 <html>
   <head>
   </head>
-  <body style='font-family: helvetica;'> 
+  <body style='font-family: monaco;'> 
     <div class='name'>matthew vermaak</div>
     <script type='text/javascript'>
       var nameElement = document.getElementsByClassName("name")[0];
@@ -11,7 +11,7 @@
       var animationArray = Array.apply(null, Array(nameArray.length)).map(function() { return 0;});
       var displayFrame = nameArray.slice(0);
 
-      var asciiAnimation = ["*", "@", "0", "o", "."];
+      var asciiAnimation = ["\\", "|", "/", "-", "."];
       var animationInterval = 200;
       var initialPause = 1000;
       var animationChance = 0.00005;
